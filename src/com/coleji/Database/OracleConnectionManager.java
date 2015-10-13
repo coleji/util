@@ -5,8 +5,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import oracle.jdbc.OracleDriver;
+
 import com.coleji.Util.PropertiesWrapper;
 
+@SuppressWarnings("unused")
 public class OracleConnectionManager extends ConnectionManager {
 	public OracleConnectionManager(String connectionPropertiesFileLocation) {
 		this.connectionPropertiesFileLocation = connectionPropertiesFileLocation;
