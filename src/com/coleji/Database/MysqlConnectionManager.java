@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import com.mysql.jdbc.Driver;
 import com.coleji.Util.PropertiesWrapper;
 
-@SuppressWarnings("unused")
 public class MysqlConnectionManager extends ConnectionManager {
 	public MysqlConnectionManager(String connectionPropertiesFileLocation) {
 		this.connectionPropertiesFileLocation = connectionPropertiesFileLocation;
@@ -18,7 +17,8 @@ public class MysqlConnectionManager extends ConnectionManager {
 		conn = null;
 		PropertiesWrapper props = new PropertiesWrapper(connectionPropertiesFileLocation, new String[] {"user", "password", "host", "port"});
 		try {
-			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			Class.forName("com.mysql.jdbc.Driver");
+			DriverManager.registerDriver(new Driver());
 			conn = DriverManager.getConnection("jdbc:mysql://" + props.getProperty("host") + ":" + props.getProperty("port") + "/",props);
 			return conn;
 		} catch (SQLException e) {

@@ -5,11 +5,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import oracle.jdbc.OracleDriver;
-
 import com.coleji.Util.PropertiesWrapper;
+import com.mysql.jdbc.Driver;
 
-@SuppressWarnings("unused")
 public class OracleConnectionManager extends ConnectionManager {
 	public OracleConnectionManager(String connectionPropertiesFileLocation) {
 		this.connectionPropertiesFileLocation = connectionPropertiesFileLocation;
@@ -19,7 +17,8 @@ public class OracleConnectionManager extends ConnectionManager {
 		conn = null;
 		PropertiesWrapper props = new PropertiesWrapper(connectionPropertiesFileLocation, new String[] {"username", "password", "host", "port", "sid"});
 		try {
-			DriverManager.registerDriver (new oracle.jdbc.OracleDriver());
+			Class.forName("oracle.jdbc.OracleDriver");
+			DriverManager.registerDriver (new Driver());
 			String connectionString = "jdbc:oracle:thin:" + props.getProperty("username") + "/" + 
 										props.getProperty("password") + "@" + 
 										props.getProperty("host") + ":" + 
