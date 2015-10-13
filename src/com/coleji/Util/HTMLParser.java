@@ -5,6 +5,7 @@ import java.util.Stack;
 
 public class HTMLParser {
 	
+	
 	// These tags dont require a closing tag.  Everything else does.
 	public static final HashMap<String,Boolean> SINGLETONS;
 	static {
