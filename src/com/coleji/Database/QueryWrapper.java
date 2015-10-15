@@ -24,6 +24,10 @@ public class QueryWrapper {
 		System.out.println(new String(sb));
 	}
 	
+	public String toString() {
+		return new String(sb);
+	}
+	
 	public ResultSet runQueryAndGetResultSet(ConnectionManager cm) throws Exception {
 		return runQueryAndGetResultSet(cm.getConnection());
 	}
@@ -32,6 +36,13 @@ public class QueryWrapper {
 		this.st = c.createStatement();
 		this.rs = st.executeQuery(new String(sb));
 		return this.rs;
+	}
+	
+	public int runUpdateOrDelete(Connection c) throws Exception {
+		this.st = c.createStatement();
+		int rowsUpdated = st.executeUpdate(new String(sb));
+		st.close();
+		return rowsUpdated;
 	}
 	
 	public int runUpdateOrDeleteAndClose(ConnectionManager cm) throws Exception {
