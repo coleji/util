@@ -12,6 +12,6 @@ public final class SSMTP {
 	public static void send(String emailTo, String fromName, String subject, String message) {
 		ShellManager s = ShellManager.getInstance();
 		String command = "ssmtp -vvvv " + emailTo + " -F" + fromName;
-		s.execute(command, null, 5000, null, "Subject: " + subject + "\n\n" + message);	
+		s.execute(command, null, 20000, null, "Subject: " + subject + "\n\n" + message);	
 	}
 }
