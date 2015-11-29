@@ -61,5 +61,9 @@ public class ProcessWrapper {
 		p.destroy();
 	}
 	
+	public int getExitValue() {
+		return p.exitValue();
+	}
+	
 	public Process unwrap() { return p; }
 }

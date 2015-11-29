@@ -79,6 +79,10 @@ public class CommandWrapper {
 		return outputStream.toString();
 	}
 	
+	public int getExitValue(){
+		return main.getExitValue();
+	}
+	
 	// first line is 0
 	public String getMainOutputLine(int lineNumber) {
 		BufferedReader outputReader = this.getMainOutputAsBufferedReader();
