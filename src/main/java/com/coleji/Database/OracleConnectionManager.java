@@ -14,14 +14,14 @@ public class OracleConnectionManager extends ConnectionManager {
 
 	public Connection getConnection() throws Exception  {
 		conn = null;
-		PropertiesWrapper props = new PropertiesWrapper(connectionPropertiesFileLocation, new String[] {"username", "password", "host", "port", "sid"});
+		PropertiesWrapper props = new PropertiesWrapper(connectionPropertiesFileLocation, new String[] {"username", "password", "host", "port", "serviceName"});
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			String connectionString = "jdbc:oracle:thin:" + props.getProperty("username") + "/" + 
 										props.getProperty("password") + "@" + 
 										props.getProperty("host") + ":" + 
-										props.getProperty("port") + ":" + 
-										props.getProperty("sid");
+										props.getProperty("port") + "/" +
+										props.getProperty("serviceName");
 			conn = DriverManager.getConnection(connectionString);
 			return conn;
 		} catch (SQLException e) {
